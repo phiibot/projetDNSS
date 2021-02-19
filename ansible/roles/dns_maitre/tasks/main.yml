@@ -1,0 +1,42 @@
+---
+- name: installation de bind9
+  apt:
+    pkg:
+    - bind9
+
+- name: ajoute de named.conf.local
+  template:
+    src: "named.conf.j2"
+    dest: "/etc/bind/named.conf.local"
+  loop: "{{ zones }}"
+
+- name: ajoute de named.conf.options
+  template:
+    src: "named.conf.options.j2"
+    dest: "/etc/named.conf.options"
+
+- name: ajoute de db.projetdns.com
+  template:
+    src: "db.projetdns.com.j2"
+    dest: "/etc/bind/db.projetdns.com"
+
+- name: ajoute de db.0.0.10.in-addr.arpa
+  template:
+    src: "db.0.0.10.in-addr.arpa.j2"
+    dest: "/etc/bind/db.0.0.10.in-addr.arpa"
+
+- name: restart bind9
+  service:
+    name: bind9
+    state: restarted
+
+- name: ajoute de resolv.conf
+  template:
+    src: "resolv.j2"
+    dest: "/etc/resolv.conf"
+
+- name: ajoute de sources.liste
+  template:
+    src: "sources.j2"
+    dest: "/etc/apt/sources.list"
+...

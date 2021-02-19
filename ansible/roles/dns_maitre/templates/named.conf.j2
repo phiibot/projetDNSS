@@ -1,0 +1,13 @@
+zone "{{ item.name_zone }}" {
+        type master;
+        file "/etc/bind/db.{{ item.name_zone }}";
+        notify yes;
+        allow-transfer { {{ item.ip }}; };
+};
+
+zone "{{ item.name_zone }}" {
+        type master;
+        file "/etc/bind/db.{{ item.name_zone }}";
+        notify yes;
+        allow-transfer { {{ item.ip }}; };
+};

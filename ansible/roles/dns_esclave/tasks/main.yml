@@ -1,0 +1,25 @@
+---
+- name: installation de bind9
+  apt:
+    pkg:
+    - bind9
+
+- name: ajoute de name.conf.local
+  template:
+    src: "named.conf.j2"
+    dest: "/etc/bind/named.conf.local"
+  loop: "{{ zones2 }}"
+
+- name: ajoute de resolv.conf
+  template:
+    src: "resolv.j2"
+    dest: "/etc/resolv.conf"
+
+
+
+- name: ajoute de sources.liste
+  template:
+    src: "resolv.j2"
+    dest: "/etc/resolv.list"
+
+...

@@ -1,0 +1,12 @@
+zone "{{ item.name_zone }}" {
+           type slave;
+           file "/etc/bind/db.{{ item.name_zone }}";
+           masters { {{ item.ip }}; };
+           };
+zone "{{ item.name_zone }}" {
+           type slave;
+           file "/etc/bind/db.{{ item.name_zone }}";
+           masters { {{ item.ip }}; };
+           };
+
+
